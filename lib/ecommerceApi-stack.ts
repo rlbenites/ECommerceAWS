@@ -1,6 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
 import * as apigateway from "aws-cdk-lib/aws-apigateway"
-// import * as lambdaNodeJS from "aws-cdk-lib/aws-apigateway"
 import * as cwlogs from "aws-cdk-lib/aws-logs"
 import { Construct } from 'constructs';
 import * as lambdaNodeJS from 'aws-cdk-lib/aws-lambda-nodejs';
