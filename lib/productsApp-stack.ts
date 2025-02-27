@@ -1,4 +1,5 @@
 import * as lambda from "aws-cdk-lib/aws-lambda";
+//import * as lambdaNodeJS from "aws-cdk-lib/aws-lambda-nodejs";
 import * as lambdaNodeJS from "aws-cdk-lib/aws-lambda-nodejs";
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
@@ -7,7 +8,7 @@ import { Construct } from "constructs";
 export class ProductsAppStack extends cdk.Stack {
   readonly productsFecthHandler: lambdaNodeJS.NodejsFunction;
 
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props: cdk.StackProps) {
     super(scope, id, props);
     
     this.productsFecthHandler = new lambdaNodeJS.NodejsFunction(
