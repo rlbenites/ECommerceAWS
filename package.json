@@ -19,7 +19,7 @@
     "aws-sdk": "^2.1692.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
-    "ts-node": "^10.9.2",
+    "ts-node": "^9.0.0",
     "typescript": "~5.6.3"
   },
   "dependencies": {
