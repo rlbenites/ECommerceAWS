@@ -5,7 +5,7 @@ import { EcommerceApiStack } from "../lib/ecommerceApi-stack";
 
 const app = new cdk.App();
 const env: cdk.Environment = {
-  account: "0582-6420-9135",
+  account: "31a2e939c746e01ecc86139606f5b477ef43a1b673034afb140acf773e412ae7",
   region: "us-east-1",
 }
 
