@@ -8,7 +8,7 @@ export class ProductsAppStack extends cdk.Stack {
   readonly productsFecthHandler: lambdaNodeJS.NodejsFunction;
 
   constructor(scope: Construct, id: string, props: cdk.StackProps) {
-    super(scope, id, props);
+    super(scope, id, props, this);
     
     this.productsFecthHandler = new lambdaNodeJS.NodejsFunction(
       this,
@@ -32,5 +32,10 @@ export class ProductsAppStack extends cdk.Stack {
   }
 }
 
+const productsLayers = new lambda.LayerVersion(this, "ProductsLayer", {
+  compatibleRuntimes: [lambda.Runtime.NODEJS_20_X],
+  code: lambda.Code.fromAsset('lambda/products/layers/productsLayer'),
+  layerVersionName: "ProductsLayer",
+  removalPolicy: cdk.RemovalPolicy.RETAIN
+})
 
-// Criando código para função Lambida
