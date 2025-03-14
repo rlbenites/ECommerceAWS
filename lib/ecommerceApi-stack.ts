@@ -3,9 +3,11 @@ import * as apigateway from "aws-cdk-lib/aws-apigateway"
 import * as cwlogs from "aws-cdk-lib/aws-logs"
 import { Construct } from 'constructs';
 import * as lambdaNodeJS from 'aws-cdk-lib/aws-lambda-nodejs';
+import { PROVIDER_ERROR_KEY } from 'aws-cdk-lib/cx-api';
 
 interface ECommerceApiStackProps extends cdk.StackProps {
     productsFecthHandler: lambdaNodeJS.NodejsFunction
+    productsAdminHandler: lambdaNodeJS.NodejsFunction
 }
 
 export class EcommerceApiStack extends cdk.Stack {
@@ -37,5 +39,20 @@ export class EcommerceApiStack extends cdk.Stack {
         //"/products"
         const productsResource = api.root.addResource("products")
         productsResource.addMethod("GET", productsFetchIntegration)
+
+        // GET /product/{id}
+        const productsIdResource = productsResource.addResource("{id}") // acessando o produto pelo Id
+        productsIdResource.addMethod("GET", productsFetchIntegration)
+
+        const productsAdminIntegration = new apigateway.LambdaIntegration(props.productsAdminHandler)
+
+        // POST /products
+        productsResource.addMethod("POST", productsAdminIntegration)
+
+        // PUT  /products/{id}
+        productsIdResource.addMethod("PUT", productsAdminIntegration)
+
+        // DELETE /
+        productsIdResource.addMethod("DELETE", productsAdminIntegration)
     }
 }

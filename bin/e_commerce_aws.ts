@@ -2,6 +2,7 @@
 import * as cdk from "aws-cdk-lib";
 import { ProductsAppStack } from "../lib/productsApp-stack";
 import { EcommerceApiStack } from "../lib/ecommerceApi-stack";
+import { LambdaAction } from "aws-cdk-lib/aws-cloudwatch-actions";
 
 const app = new cdk.App();
 
@@ -20,7 +21,10 @@ const productsAppStack = new ProductsAppStack(app, "ProductApp", {
   env: env
 })
 
-const eCommerceApiStack = new EcommerceApiStack(app, "ECommerApi", {
-  productsFecthHandler: productsAppStack.productsFecthHandler 
+const eCommerceApiStack = new EcommerceApiStack(app, "ECommerceApi", {
+  productsFecthHandler: productsAppStack.productsFecthHandler,
+  productsAdminHandler: productsAppStack.productsAdminHandler,
+  tags: tags,
+  env: env
 })
 eCommerceApiStack.addDependency(productsAppStack)
