@@ -3,7 +3,6 @@ import * as apigateway from "aws-cdk-lib/aws-apigateway"
 import * as cwlogs from "aws-cdk-lib/aws-logs"
 import { Construct } from 'constructs';
 import * as lambdaNodeJS from 'aws-cdk-lib/aws-lambda-nodejs';
-import { PROVIDER_ERROR_KEY } from 'aws-cdk-lib/cx-api';
 
 interface ECommerceApiStackProps extends cdk.StackProps {
     productsFecthHandler: lambdaNodeJS.NodejsFunction
@@ -47,12 +46,12 @@ export class EcommerceApiStack extends cdk.Stack {
         const productsAdminIntegration = new apigateway.LambdaIntegration(props.productsAdminHandler)
 
         // POST /products
-        productsResource.addMethod("POST", productsAdminIntegration)
+        productsResource.addMethod("POST", productsAdminIntegration) // Cadastro de produtos
 
         // PUT  /products/{id}
-        productsIdResource.addMethod("PUT", productsAdminIntegration)
+        productsIdResource.addMethod("PUT", productsAdminIntegration) // Alteração de produtos
 
         // DELETE /
-        productsIdResource.addMethod("DELETE", productsAdminIntegration)
+        productsIdResource.addMethod("DELETE", productsAdminIntegration) // Exclusão de produtos
     }
 }

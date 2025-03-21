@@ -2,7 +2,6 @@
 import * as cdk from "aws-cdk-lib";
 import { ProductsAppStack } from "../lib/productsApp-stack";
 import { EcommerceApiStack } from "../lib/ecommerceApi-stack";
-import { LambdaAction } from "aws-cdk-lib/aws-cloudwatch-actions";
 
 const app = new cdk.App();
 
