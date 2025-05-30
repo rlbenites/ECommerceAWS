@@ -4,6 +4,7 @@ import * as cwlogs from "aws-cdk-lib/aws-logs"
 import { Construct } from 'constructs';
 import * as lambdaNodeJS from 'aws-cdk-lib/aws-lambda-nodejs';
 
+
 interface ECommerceApiStackProps extends cdk.StackProps {
     productsFecthHandler: lambdaNodeJS.NodejsFunction
     productsAdminHandler: lambdaNodeJS.NodejsFunction

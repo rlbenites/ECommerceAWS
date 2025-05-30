@@ -26,6 +26,11 @@ export class ProductsAppStack extends cdk.Stack {
       readCapacity: 1, // capacidade de leitura
       writeCapacity: 1, // capacidade de escrita
     });
+
+    //Products Layer
+    const productsLayerArn = ssm.StringParameter.valueForStringParameter(this, "ProductsLayerVersionArn")
+    const productsLayer = lambda.LayerVersion.fromLayerVersionArn(this, "ProductsLayerVersionArn", productsLayerArn)
+
     this.productsFecthHandler = new lambdaNodeJS.NodejsFunction(
       this,
       "ProductsFecthFunction",
@@ -43,6 +48,7 @@ export class ProductsAppStack extends cdk.Stack {
         environment: {
           PRODUCTS_DDB: this.productsDdb.tableName,
         },
+        layers: [productsLayer]
       }
     );
     this.productsDdb.grantReadData(this.productsFecthHandler); // Somente leitura da tabela

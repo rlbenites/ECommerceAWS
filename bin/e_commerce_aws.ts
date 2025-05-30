@@ -2,6 +2,7 @@
 import * as cdk from "aws-cdk-lib";
 import { ProductsAppStack } from "../lib/productsApp-stack";
 import { EcommerceApiStack } from "../lib/ecommerceApi-stack";
+import { ProductsAppLayersStack } from "../lib/productsAppLayers-stack";
 
 const app = new cdk.App();
 
@@ -14,6 +15,11 @@ const tags = {
   cost: "Ecommerce",
   team: "Student"
 }
+
+const productsAppLayersStack = new ProductsAppLayersStack (app, "ProductsLayers", {
+  tags: tags,
+  env: env
+})
 
 const productsAppStack = new ProductsAppStack(app, "ProductApp", {
   tags: tags,
