@@ -16,7 +16,7 @@ export class ProductsAppStack extends cdk.Stack {
 
     this.productsDdb = new dynamodb.Table(this, "ProductsDdb", {
       tableName: "products", // nome da tabela
-      removalPolicy: cdk.RemovalPolicy.DESTROY, // tipo de remoção da tabela caso precise destruir toa infraestrutura. Normalmente usamos 'Retail'
+      removalPolicy: cdk.RemovalPolicy.DESTROY, // tipo de remoção da tabela caso precise destruir toda infraestrutura. Normalmente usamos 'Retail'
       partitionKey: {
         // atributos da tabela
         name: "id", // chave primaria

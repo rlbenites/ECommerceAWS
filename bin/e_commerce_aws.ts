@@ -4,6 +4,7 @@ import { ProductsAppStack } from "../lib/productsApp-stack";
 import { EcommerceApiStack } from "../lib/ecommerceApi-stack";
 import { ProductsAppLayersStack } from "../lib/productsAppLayers-stack";
 
+
 const app = new cdk.App();
 
 const env: cdk.Environment = {
@@ -25,6 +26,7 @@ const productsAppStack = new ProductsAppStack(app, "ProductApp", {
   tags: tags,
   env: env
 })
+productsAppStack.addDependency(productsAppLayersStack)
 
 const eCommerceApiStack = new EcommerceApiStack(app, "ECommerceApi", {
   productsFecthHandler: productsAppStack.productsFecthHandler,
@@ -33,3 +35,4 @@ const eCommerceApiStack = new EcommerceApiStack(app, "ECommerceApi", {
   env: env
 })
 eCommerceApiStack.addDependency(productsAppStack)
+
